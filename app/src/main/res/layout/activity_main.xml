@@ -15,6 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@null"
-        android:src="@drawable/homer_simpson"/>
+        android:src="@drawable/v_heard"/>
 
 </RelativeLayout>
