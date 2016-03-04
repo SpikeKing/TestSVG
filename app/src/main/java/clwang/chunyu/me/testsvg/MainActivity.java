@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         animateImage(); // 动画播放图片
     }
 
-    // 只支持6.0以上.
+    // 只支持5.0以上.
     private void animateImage() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // 获取动画效果
