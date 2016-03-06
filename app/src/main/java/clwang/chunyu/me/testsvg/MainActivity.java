@@ -1,39 +1,43 @@
 package clwang.chunyu.me.testsvg;
 
-import android.graphics.drawable.AnimatedVectorDrawable;
-import android.os.Build;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewCompat;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ImageView;
+import android.view.View;
+import android.widget.Button;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+/**
+ * 跳转三个模块: SVG图片, SVG动画, Sharp库
+ * <p/>
+ * Created by wangchenlong on 16/3/6.
+ */
 public class MainActivity extends AppCompatActivity {
 
-    @Bind(R.id.main_iv_image_view) ImageView mIvImageView;
+    @Bind(R.id.main_b_image) Button mMainBImage;
+    @Bind(R.id.main_b_animation) Button mMainBAnimation;
+    @Bind(R.id.main_b_sharp) Button mMainBSharp;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        animateImage(); // 动画播放图片
-    }
-
-    // 只支持5.0以上.
-    private void animateImage() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            // 获取动画效果
-            AnimatedVectorDrawable mAnimatedVectorDrawable = (AnimatedVectorDrawable)
-                    ContextCompat.getDrawable(getApplication(), R.drawable.v_heard_animation);
-            mIvImageView.setImageDrawable(mAnimatedVectorDrawable);
-            if (mAnimatedVectorDrawable != null) {
-                mAnimatedVectorDrawable.start();
+        // 图像
+        mMainBImage.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ImageActivity.class));
             }
-        }
+        });
+
+        // 动画
+        mMainBAnimation.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, AnimationActivity.class));
+            }
+        });
     }
 }
