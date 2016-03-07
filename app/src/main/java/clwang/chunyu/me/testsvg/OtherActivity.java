@@ -23,7 +23,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * 第三方库
+ * 第三方库, 直接使用SVG, 不用转换Vector
  * <p/>
  * Created by wangchenlong on 16/3/7.
  */
