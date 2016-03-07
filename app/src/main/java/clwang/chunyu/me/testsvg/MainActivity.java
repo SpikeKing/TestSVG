@@ -17,9 +17,9 @@ import butterknife.ButterKnife;
  */
 public class MainActivity extends AppCompatActivity {
 
-    @Bind(R.id.main_b_image) Button mMainBImage;
-    @Bind(R.id.main_b_animation) Button mMainBAnimation;
-    @Bind(R.id.main_b_sharp) Button mMainBSharp;
+    @Bind(R.id.main_b_image) Button mBImage;
+    @Bind(R.id.main_b_animation) Button mBAnimation;
+    @Bind(R.id.main_b_sharp) Button mBSharp;
 
     @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,16 +27,23 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         // 图像
-        mMainBImage.setOnClickListener(new View.OnClickListener() {
+        mBImage.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ImageActivity.class));
             }
         });
 
         // 动画
-        mMainBAnimation.setOnClickListener(new View.OnClickListener() {
+        mBAnimation.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, AnimationActivity.class));
+            }
+        });
+
+        // 第三方库
+        mBSharp.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, OtherActivity.class));
             }
         });
     }

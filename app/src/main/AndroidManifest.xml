@@ -18,6 +18,7 @@
 
         <activity android:name=".ImageActivity"/>
         <activity android:name=".AnimationActivity"/>
+        <activity android:name=".OtherActivity"/>
     </application>
 
 </manifest>
