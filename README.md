@@ -1,6 +1,8 @@
 # TestSVG
 SVG格式图片的使用方式
 
+> 欢迎Follow我的[GitHub](https://github.com/SpikeKing)
+
 博客: http://www.wangchenlong.org/
 
 本文: 
