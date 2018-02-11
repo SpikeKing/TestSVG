@@ -44,49 +44,50 @@ public class OtherActivity extends AppCompatActivity {
         // 切换SVG的颜色
         mBChange.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                // 切换图片的颜色
-                mSharp.setOnElementListener(new OnSvgElementListener() {
-                    @Override
-                    public void onSvgStart(@NonNull Canvas canvas, @Nullable RectF rectF) {
+                changeSVG();  // 修改SVG的图片
+            }
+        });
+    }
 
+    private void changeSVG() {
+        // 切换图片的颜色
+        mSharp.setOnElementListener(new OnSvgElementListener() {
+            @Override
+            public void onSvgStart(@NonNull Canvas canvas, @Nullable RectF rectF) {
+            }
+
+            @Override public void onSvgEnd(@NonNull Canvas canvas, @Nullable RectF rectF) {
+            }
+
+            @Override public <T> T onSvgElement(
+                    @Nullable String id, @NonNull T element, @Nullable RectF elementBounds,
+                    @NonNull Canvas canvas, @Nullable RectF canvasBounds, @Nullable Paint paint) {
+                // 变换颜色
+                if (("shirt".equals(id) || "hat".equals(id) || "pants".equals(id))) {
+                    Random random = new Random();
+                    if (paint != null) {
+                        paint.setColor(Color.argb(255,
+                                random.nextInt(256), random.nextInt(256), random.nextInt(256)));
                     }
+                }
+                return element;
+            }
 
-                    @Override public void onSvgEnd(@NonNull Canvas canvas, @Nullable RectF rectF) {
-
-                    }
-
-                    @Override
-                    public <T> T onSvgElement(@Nullable String s, @NonNull T t, @Nullable RectF rectF, @NonNull Canvas canvas, @Nullable RectF rectF1, @Nullable Paint paint) {
-                        // 变换颜色
-                        if (("shirt".equals(s) || "hat".equals(s) || "pants".equals(s))) {
-                            Random random = new Random();
-                            if (paint != null) {
-                                paint.setColor(Color.argb(255,
-                                        random.nextInt(256), random.nextInt(256), random.nextInt(256)));
-                            }
-                        }
-                        return t;
-                    }
-
-                    @Override
-                    public <T> void onSvgElementDrawn(@Nullable String s, @NonNull T t, @NonNull Canvas canvas, @Nullable Paint paint) {
-
-                    }
-                });
-                // 设置按钮的图标
-                mSharp.getSharpPicture(new Sharp.PictureCallback() {
-                    @Override public void onPictureReady(SharpPicture sharpPicture) {
-                        // 设置图像
-                        int size = getResources().getDimensionPixelSize(R.dimen.icon_size);
-                        Drawable drawable = sharpPicture.createDrawable(mBChange, size);
-                        mBChange.setCompoundDrawables(drawable, null, null, null);
-                    }
-
-                });
-                mSharp.into(mIvImage);
+            @Override
+            public <T> void onSvgElementDrawn(@Nullable String s, @NonNull T t,
+                                              @NonNull Canvas canvas, @Nullable Paint paint) {
             }
         });
 
+        mSharp.into(mIvImage);
 
+        // 设置按钮的图标
+        mSharp.getSharpPicture(new Sharp.PictureCallback() {
+            @Override public void onPictureReady(SharpPicture sharpPicture) {
+                int size = getResources().getDimensionPixelSize(R.dimen.icon_size);
+                Drawable drawable = sharpPicture.createDrawable(mBChange, size);
+                mBChange.setCompoundDrawables(drawable, null, null, null);  // 设置左侧图像
+            }
+        });
     }
 }
